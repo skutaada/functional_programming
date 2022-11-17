@@ -71,6 +71,7 @@ instance Wgf Lieferausblick where
    where 
       checkArray [] = []
       checkArray ((f, s):lf) = (and $ map (==s) $ map snd $ filter (\(a, b) -> (a == f)) lf) : checkArray lf 
+ wgf_fehler _ = error "Ausblickfehler"
 
 sortimentHelper :: [(Typ, Datensatz)] -> Bool
 sortimentHelper [] = True
@@ -81,6 +82,7 @@ sortimentHelper ((f1, s1):(f2, s2):lf)
 
 instance Wgf Sortiment where
  ist_wgf (Sort x) = sortimentHelper $ sortOn fst x
+ wgf_fehler _ = error "Sortimentfehler"
 
 anbieterHelper :: [(Haendler, Sortiment)] -> Bool
 anbieterHelper [] = True
@@ -91,6 +93,7 @@ anbieterHelper ((f1, s1):(f2, s2):lf)
 
 instance Wgf Anbieter where
   ist_wgf (A x) = anbieterHelper $ sortOn fst x
+  wgf_fehler _ = error "Anbieterfehler"
 
 {- Knapp, aber gut nachvollziehbar gehen die Instanzbildungen fuer Wgf folgendermassen vor:
    ...
