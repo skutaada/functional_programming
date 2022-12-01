@@ -112,7 +112,7 @@ type Haendlerliste = [Haendler]
 sofort_lieferfaehig :: Suchanfrage -> Anbieter -> Haendlerliste
 sofort_lieferfaehig t a@(A x)
    | ist_wgf a = sofort_lieferfaehig' t (A (reverse $ sortOn fst x))
-   | otherwise = error "Anbieterfehler"
+   | otherwise = error "Anbieterargumentfehler"
 
 sofort_lieferfaehig' :: Suchanfrage -> Anbieter -> Haendlerliste
 sofort_lieferfaehig' _ (A []) = []
